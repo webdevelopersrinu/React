@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 3 React</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .container {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(
+        to bottom,
+        rgb(0, 229, 255),
+        rgb(255, 0, 251)
+      );
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .card {
+      width: 320px;
+      max-width: 320px;
+      overflow: hidden;
+      margin: 24px;
+      background-color: #fff;
+      padding: 19px 12px;
+      border-radius: 15px;
+    }
+    .card-img {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+    }
+    .card-img img {
+      width: 70%;
+      transition: all 0.6s;
+    }
+    .card-img img:hover {
+      width: 80%;
+    }
+    .card-data {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .title {
+      font-size: 26px;
+      font-weight: bolder;
+      padding: 7px 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .sub-title {
+      font-size: 18px;
+      padding: 8px 0;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      height: 76px;
+    }
+    .card-content {
+      display: flex;
+      align-items: center;
+
+      justify-content: space-between;
+    }
+    .color-text {
+      font-size: 18px;
+    }
+    .color {
+      width: 30px;
+      height: 30px;
+      background: black;
+      display: inline-block;
+      margin: 4px;
+      border-radius: 50%;
+      margin: 3px;
+      border: 3px solid #fff;
+      outline: 2px solid black;
+    }
+    .pink {
+      background: rgb(87, 87, 87);
+      outline: none;
+    }
+    .yellow {
+      background: chocolate;
+      outline: none;
+    }
+    .colors-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .price-section {
+      padding-right: 12px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .btn-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+    }
+    .btn {
+      padding: 12px 24px;
+      font-size: 17px;
+      font-weight: 600;
+      margin-top: 9px;
+      border-radius: 21px;
+      text-transform: capitalize;
+      background: linear-gradient(to right, rgb(0, 229, 255), rgb(225, 0, 255));
+      color: #fff;
+      border: none;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+    <!-- react ,reactDom ,babel CDNs -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.js"></script>
+    <script type="text/babel">
+      function Card(props) {
+        const { id, imgUrl, title, subTitle, price } = props;
+        return (
+          <div class="card" key={id}>
+            <div class="card-img">
+              <img src={imgUrl} alt="img" />
+            </div>
+            <div class="card-data">
+              <span class="title">{title}</span>
+              <span class="sub-title">{subTitle}</span>
+            </div>
+            <div class="card-content">
+              <div class="colors-section">
+                <span class="color-text">Color :</span>
+                <div>
+                  <span class="blue">
+                    <span class="color"></span>
+                  </span>
+                  <span class="color pink"></span>
+                  <span class="color yellow"></span>
+                </div>
+              </div>
+              <div class="price-section">
+                <span>{price}</span>
+              </div>
+            </div>
+            <div class="btn-section">
+              <button class="btn">Add to card</button>
+            </div>
+          </div>
+        );
+      }
+      function App() {
+        let data = [
+          {
+            id: 101,
+            title: "Canon EOS Rebel T100",
+            des: "Canon EOS Rebel T100 Digital SLR Camera with 18-55mm Lens Kit, 18 Megapixel Sensor, Wi-Fi, DIGIC4+, SanDisk 32GB Memory Card and Live View Shooting",
+            price: "559.99",
+            image: "https://i.ibb.co/1r28gMk/1.webp",
+          },
+          {
+            id: 102,
+            title: "DJI Air",
+            des: "DJI Mini 2 Fly More Combo - Ultralight Foldable Drone, 3-Axis Gimbal with 4K Camera, 12MP Photos, 31 Min Flight Time",
+            price: "999.00",
+            image: "https://i.ibb.co/qdfB3s6/2.webp",
+          },
+          {
+            id: 107,
+            title: "uhomepro TV Stand Cabinet",
+            des: "uhomepro TV Stand Cabinet for Living Room up to 55 Television, Entertainment Center with RGB LED Lights and Storage Shelves Furniture, Black High Gloss TV Cabinet Console Table, Q15709",
+            price: "125.99",
+            image: "https://i.ibb.co/Ycz8hkV/6.webp",
+          },
+          {
+            _id: 119,
+            title:
+              "L'Oreal Paris Collagen Moisture Filler Facial Treatment Day Night Cream, Anti-Aging, 1.7 oz",
+            des: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since",
+            price: "8.98",
+            image: "https://i.ibb.co/vHJkwzt/top3.webp",
+          },
+        ];
+        return (
+          <>
+            <div class="container">
+              <Card
+                id={data[0].id}
+                imgUrl={data[0].image}
+                title={data[0].title}
+                subTitle={data[0].des}
+                price={data[0].price}
+              />
+              <Card
+                id={data[1].id}
+                imgUrl={data[1].image}
+                title={data[1].title}
+                subTitle={data[1].des}
+                price={data[1].price}
+              />
+              <Card
+                id={data[2].id}
+                imgUrl={data[2].image}
+                title={data[2].title}
+                subTitle={data[2].des}
+                price={data[2].price}
+              />
+              <Card
+                id={data[3].id}
+                imgUrl={data[3].image}
+                title={data[3].title}
+                subTitle={data[3].des}
+                price={data[3].price}
+              />
+            </div>
+          </>
+        );
+      }
+      let root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
