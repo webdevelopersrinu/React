@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day5 React</title>
+    <style>
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 12px;
+      }
+      .button-section {
+        display: flex;
+        flex-direction: column;
+        width: 120px;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 24px;
+        font-size: 19px;
+        text-transform: capitalize;
+      }
+      .btn {
+        padding: 4px 8px;
+        font-size: 17px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- <script src="./../React.js"></script>
+    <script src="./../ReactDom.js"></script>
+    <script src="./../babel.js"></script> -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.js"></script>
+
+    <script type="text/babel">
+      let primary = {
+        color: "blue",
+        border: "1px solid blue",
+        backgroundColor: "rgba(60, 60, 227, 0.228)",
+      };
+      let Secondry = {
+        color: "gray",
+        border: "1px solid gray",
+        backgroundColor: "rgba(128, 128, 128, 0.4)",
+      };
+      let disabled = {
+        color: "rgba(128, 128, 128, 0.795)",
+        border: "1px solid rgba(128, 128, 128, 0.795)",
+        backgroundColor: "rgba(128, 128, 128, 0.139)",
+      };
+      function Button({ name, id }) {
+        console.log(id);
+        return (
+          <div className="button-section" key={id}>
+            {name === "Primary" ? (
+              <>
+                <span className="title" style={{ color: "blue" }}>
+                  {name}
+                </span>
+                <button className="btn" style={primary}>
+                  Button
+                </button>
+              </>
+            ) : name === "Secondry" ? (
+              <>
+                <span className="title" style={{ color: "gray" }}>
+                  {name}
+                </span>
+                <button className="btn" style={Secondry}>
+                  Button
+                </button>
+              </>
+            ) : (
+              <>
+                <span
+                  className="title"
+                  style={{ color: "rgba(128, 128, 128, 0.795)" }}
+                >
+                  {name}
+                </span>
+                <button className="btn" style={disabled}>
+                  Button
+                </button>
+              </>
+            )}
+          </div>
+        );
+      }
+      let colors = ["Primary", "Secondry", "disabled"];
+      function App() {
+        return (
+          <div className="container">
+            {colors.map((color, index) => {
+              return <Button name={color} id={index} />;
+            })}
+          </div>
+        );
+      }
+      let root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
